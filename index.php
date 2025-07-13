@@ -45,7 +45,19 @@
         $message = "";
 
         // if this form are submitted
-        if(isset($_POST[]))
+        if(isset($_POST['submit'])){
+            $username = $conn->real_escape_string($_POST['username']);
+            $email = $conn->real_escape_string($_POST['email']);
+            $password = $_POST['password'];
+            // Validation Checking
+            if(empty($username) || empty($email) || empty($password)){
+                $message = "<div class='message error'>All Field Are Required!</div>";
+            }elseif(!filter_var($email.FILTER_VALIDATE_EMAIL)){
+                $messege = "<div class='messege error'>Invalid Email Fromate</div>";
+            }elseif(strlen($password) < 6 || strlen($password) >=9){
+                $message = "<div class='message error'>Password Should Be equal to 8 or getter then 6</div>";
+            }
+        }
         ?>
     </div>
 </body>
