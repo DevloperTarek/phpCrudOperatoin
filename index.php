@@ -3,59 +3,55 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Php with Laravel Technology.</title>
+    <title>Register Form</title>
+    <link rel="stylesheet" href="./output.css" />
 </head>
 <body>
-  
-    <h2 class="form-validation">Form Validation</h2>
-    <p><span class="error">*</span></p>
+    <div class="container">
+        <h4 class="reg-here">Register Here</h4>
+        <form action="" method="POST">
+            <div class="form-group">
+                <label for="username">Username</label>
+                <input type="text" name="username" id="username" placeholder="enter name.." />
+                <span class="error"></span>
+            </div>
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" name="email" id="email" placeholder="enter Email.." />
+                <span class="error"></span>
+            </div>
+            <div class="form-group">
+                <label for="password">Email</label>
+                <input type="password" name="password" id="password" placeholder="enter Paaword.." />
+                <span class="error"></span>
+            </div>
+            <input type="submit" name="submit" value="Register Now" />
+        </form>
+        <!-- From validation Code -->
+        <?php 
+           $server_name = "localhost";
+           $server_user = "root";
+           $password_db = "";
+           $my_db = "my_database";
 
-    <!-- OOP - Means == Object Orrented Programming -->
-    
-    <?php
-        class UiDesigner{
-            public $designerName;
-            public $designerExperienceYear;
-            public $designerExperienceSkils;
-            
-            function set_name_1($designerExperienceYear){
-                $this->designerExperienceYear = $designerExperienceYear;
-            }
-            function set_design_experience_skil($designerExperienceSkils){
-                $this->designerExperienceSkils = $designerExperienceSkils; 
-            }
-            function set_design_name($designerName){
-                $this->designerName = $designerName;
-            }
+           $conn = new mysqli($server_name,$server_user,$password_db,$my_db);
+
+        //    checking server connect or not
+        if($conn->connect_error){
+            die("<div class='message error'> Connection Faild:". $conn->connect_error . "</div>");
         }
-        // Obj Here
-        $designerName = new UiDesigner();
-        $designerName->set_design_name("Tarek Hossain");
 
-        $designerExperienceYear = new UiDesigner();
-        $designerExperienceYear->set_name_1('3+');
+        // Show for message
+        $message = "";
 
-        $designerExperienceSkils = new UiDesigner();
-        $designerExperienceSkils->set_design_experience_skil('Html,Css,Js,Php,React,Next js,Git,Github');
-
-        $designerKnow = new UiDesigner();
-        $designerTimes->designSumm('4 time week and times.');
-
-        echo $designerName->designerName. "<br>";
-        echo $designerExperienceYear->designerExperienceYear . "<br>";
-        echo $designerExperienceSkils->designerExperienceSkils;
-    ?>
-    <!DOCTYPE html>
-    <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Happy Friends birthdate year and time</title>
-    </head>
-    <body>
-        
-    </body>
-    </html>
-    
+        // if this form are submitted
+        if(isset($_POST[]))
+        ?>
+    </div>
 </body>
 </html>
+
+
+<?php 
+   
+?>

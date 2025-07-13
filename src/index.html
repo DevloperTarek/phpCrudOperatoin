@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Php with Laravel Technology.</title>
+    <link rel="stylesheet" href="./output.css" />
+</head>
+<body>
+  
+    <h2 class="form-validation">Form Validation</h2>
+    <p><span class="error">*</span></p>
+
+    <!-- OOP - Means == Object Orrented Programming -->
+    <div class="min-h-screen flex flex-col items-center py-8 px-4 sm:px-6 lg:px-8">
+        <!-- Main Application Container -->
+        <div class="w-full max-w-4xl bg-white shadow-xl rounded-xl p-6 sm:p-8">
+            <h1 class="text-3xl sm:text-4xl font-bold text-center text-gray-900 mb-8">Product Management</h1>
+
+            <!-- Create New Item Section -->
+            <div class="mb-8 p-6 bg-blue-50 rounded-lg shadow-md">
+                <h2 class="text-2xl font-semibold text-blue-800 mb-4">Add New Product</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <input type="text" id="productName" placeholder="Product Name"
+                           class="p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition duration-200 ease-in-out">
+                    <input type="number" id="productPrice" placeholder="Price"
+                           class="p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition duration-200 ease-in-out">
+                    <textarea id="productDescription" placeholder="Description" rows="3"
+                              class="md:col-span-2 p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition duration-200 ease-in-out resize-y"></textarea>
+                </div>
+                <button id="addProductBtn"
+                        class="mt-4 w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-lg shadow-lg transform hover:scale-105 transition duration-300 ease-in-out focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50">
+                    Add Product
+                </button>
+            </div>
+
+            <!-- Product List Section (Read) -->
+            <div class="bg-gray-50 rounded-lg shadow-md p-6">
+                <h2 class="text-2xl font-semibold text-gray-800 mb-4">Product List</h2>
+                <div id="productList" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <!-- Product cards will be inserted here by JavaScript -->
+                    <div class="bg-white rounded-lg shadow-md p-5 border border-gray-200">
+                        <h3 class="text-xl font-semibold text-gray-900 mb-2">Example Product 1</h3>
+                        <p class="text-gray-600 text-sm mb-2 line-clamp-2">A short description for example product one, showcasing its features and benefits.</p>
+                        <p class="text-lg font-bold text-green-600 mb-4">$29.99</p>
+                        <div class="flex justify-end space-x-2">
+                            <button class="edit-btn bg-yellow-500 hover:bg-yellow-600 text-white text-sm font-medium py-2 px-4 rounded-md shadow-sm transform hover:scale-105 transition duration-200 ease-in-out" data-id="1">Edit</button>
+                            <button class="delete-btn bg-red-500 hover:bg-red-600 text-white text-sm font-medium py-2 px-4 rounded-md shadow-sm transform hover:scale-105 transition duration-200 ease-in-out" data-id="1">Delete</button>
+                        </div>
+                    </div>
+                    <div class="bg-white rounded-lg shadow-md p-5 border border-gray-200">
+                        <h3 class="text-xl font-semibold text-gray-900 mb-2">Example Product 2</h3>
+                        <p class="text-gray-600 text-sm mb-2 line-clamp-2">This is another example product with a slightly longer description to demonstrate text truncation.</p>
+                        <p class="text-lg font-bold text-green-600 mb-4">$49.50</p>
+                        <div class="flex justify-end space-x-2">
+                            <button class="edit-btn bg-yellow-500 hover:bg-yellow-600 text-white text-sm font-medium py-2 px-4 rounded-md shadow-sm transform hover:scale-105 transition duration-200 ease-in-out" data-id="2">Edit</button>
+                            <button class="delete-btn bg-red-500 hover:bg-red-600 text-white text-sm font-medium py-2 px-4 rounded-md shadow-sm transform hover:scale-105 transition duration-200 ease-in-out" data-id="2">Delete</button>
+                        </div>
+                    </div>
+                </div>
+                <p id="noProductsMessage" class="text-center text-gray-500 mt-4 hidden">No products available. Add some!</p>
+            </div>
+        </div>
+
+        <!-- Edit Product Modal (Initially Hidden) -->
+        <div id="editModal" class="fixed inset-0 bg-gray-900 bg-opacity-75 flex items-center justify-center p-4 z-50 hidden">
+            <div class="bg-white rounded-xl shadow-2xl p-6 w-full max-w-md transform transition-all duration-300 ease-in-out scale-95 opacity-0" id="modalContent">
+                <h2 class="text-2xl font-semibold text-gray-900 mb-6 text-center">Edit Product</h2>
+                <input type="hidden" id="editProductId">
+                <div class="mb-4">
+                    <label for="editProductName" class="block text-gray-700 text-sm font-medium mb-2">Product Name</label>
+                    <input type="text" id="editProductName"
+                           class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition duration-200 ease-in-out">
+                </div>
+                <div class="mb-4">
+                    <label for="editProductPrice" class="block text-gray-700 text-sm font-medium mb-2">Price</label>
+                    <input type="number" id="editProductPrice"
+                           class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition duration-200 ease-in-out">
+                </div>
+                <div class="mb-6">
+                    <label for="editProductDescription" class="block text-gray-700 text-sm font-medium mb-2">Description</label>
+                    <textarea id="editProductDescription" rows="4"
+                              class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition duration-200 ease-in-out resize-y"></textarea>
+                </div>
+                <div class="flex justify-end space-x-3">
+                    <button id="cancelEditBtn"
+                            class="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-5 rounded-lg shadow-md transform hover:scale-105 transition duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-gray-300 focus:ring-opacity-50">
+                        Cancel
+                    </button>
+                    <button id="saveEditBtn"
+                            class="bg-green-600 hover:bg-green-700 text-white font-bold py-2 px-5 rounded-lg shadow-md transform hover:scale-105 transition duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-opacity-50">
+                        Save Changes
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Custom Message Box -->
+        <div id="messageBox" class="fixed bottom-8 right-8 bg-blue-600 text-white px-6 py-3 rounded-lg shadow-lg hidden z-50">
+            <p id="messageText"></p>
+        </div>
+
+    </div>
+
+    <script src="/script.js"></script>
+</body>
+</html>
