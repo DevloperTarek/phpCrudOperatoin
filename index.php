@@ -1,7 +1,5 @@
 <?php
-    $number = 12;
-    $result = $number + 13;
-    echo $result . "<br>";
-    $res = $number+= 13;
-    echo $res;
+    $number = 10;
+    $res1 = 10 / 4;
+    echo $res1;
 ?>
