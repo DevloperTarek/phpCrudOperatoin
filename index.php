@@ -1,5 +1,6 @@
 <?php
     $number = 10;
-    $res1 = 10 / 4;
-    echo $res1;
+   
+    $res = $number % 3;
+    echo $res;
 ?>
