@@ -1,6 +1,7 @@
 <?php
-
-$name = "Tarek";
-$lastName = "Hossain";
-echo "{$name} is the best from {$lastName}";
+    $number = 12;
+    $result = $number + 13;
+    echo $result . "<br>";
+    $res = $number+= 13;
+    echo $res;
 ?>
