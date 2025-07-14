@@ -1,6 +1,6 @@
 <?php
-    $number = 10;
-   
-    $res = $number % 3;
-    echo $res;
+//    Multiplication
+$multi = 10;
+$res = $multi *=10;
+echo "the Muliplication Result is" . $res;
 ?>
