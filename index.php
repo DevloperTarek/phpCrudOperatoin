@@ -56,6 +56,9 @@
                 $messege = "<div class='messege error'>Invalid Email Fromate</div>";
             }elseif(strlen($password) < 6 || strlen($password) >=9){
                 $message = "<div class='message error'>Password Should Be equal to 8 or getter then 6</div>";
+            }else{
+                // Password Hashed
+                $hashed_pass = password_hash($password, PASSWORD_DEFAULT);
             }
         }
         ?>
