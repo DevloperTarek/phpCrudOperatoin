@@ -1,8 +1,15 @@
 <?php 
-  class myClas {
-        public static function myfun(){
-            echo "My function number is :";
-        }
+  class addition{
+    public static function add($a,$b){
+        echo $a + $b . "<br>";
+    }
   }
-  myClas::myfun();
+  addition::add(4,12) . "<br>";
+
+  class divided{
+    public static function divide($a,$c,$f){
+        echo $a % ($c+$f);
+    }
+  }
+  divided::divide(3,2,2);
 ?>
