@@ -6,9 +6,17 @@
 
    $conn = new mysqli($host,$username,$password,$database);
 
-   if($conn -> connect_errno){
-       die("connection Failed" . $conn->connect_errno);
+   if($conn->connect_errno){
+        die("Connection Failed" . $conn->connect_errno);
    }else{
-        echo "Database Connection Successfully";
+        echo "Db Connection Successfully";
+   }
+
+
+   $sql = "INSERT INTO testdb (name, email) VALUES ('Tarek','devlopertarek433@gmail.com')";
+   if($conn->query($sql) === true){
+        echo "New Record inserted Successfully";
+   }else{
+        echo "Error: ".$conn->error;
    }
 ?>
