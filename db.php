@@ -1,8 +1,14 @@
 <?php 
-    $user = [
-        ['email' => "devlopertarek433@gmail.com",'password' => '123041?!'],
-    ];
-    $admin = [
-        ['email' => "admin@example.com", 'password' => 'admin123'],
-    ]
+   $host = "localhost";
+   $username = "root";
+   $password = "";
+   $database = "testdb";
+
+   $conn = new mysqli($host,$username,$password,$database);
+
+   if($conn -> connect_errno){
+       die("connection Failed" . $conn->connect_errno);
+   }else{
+        echo "Database Connection Successfully";
+   }
 ?>
